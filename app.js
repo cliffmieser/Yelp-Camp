@@ -42,6 +42,7 @@ const sessionConfig = {
     }
 }
 
+///words
 
 app.use(session(sessionConfig));
 app.use(flash());
