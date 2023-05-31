@@ -9,5 +9,5 @@
 
 #viewing mongodb database
 
-- enter in another terminal (if nodemon is running): sudo service mongod 
+- enter in another terminal (if nodemon is running): sudo service mongod start
 - enter mongo shell: mongosh
