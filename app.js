@@ -11,6 +11,16 @@ const campgrounds = require('./routes/campgrounds.js');
 const reviews = require('./routes/reviews.js');
 const { campgroundSchema } = require('./schemas');
 
+//gets rid of deprecation warning
+// mongoose.set('strictQuery', true);
+
+
+//callback support for mongoose V7
+//IF error is unresolved:
+// Replace Document.save(cb) with Document.save().then(document => cb(null, document)).catch(cb)
+// Replace Query.exec(cb) with Query.exec().then(document => cb(null, document)).catch(cb)
+
+
 
 mongoose.connect('mongodb://localhost:27017/yelp-camp');
 
