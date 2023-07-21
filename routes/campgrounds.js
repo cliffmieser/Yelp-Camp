@@ -26,3 +26,4 @@ router.get('/:id/edit', isLoggedIn, isAuthor, catchAsync(campgrounds.renderEditF
 
 module.exports = router;
 
+
