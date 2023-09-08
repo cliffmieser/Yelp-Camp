@@ -14,6 +14,7 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
+const port = 3000;
 
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds.js');
@@ -102,6 +103,6 @@ app.use((err, req, res, next) =>{
  
 })
 
-app.listen(3000, (req, res) =>{
-    console.log('Serving on port 3000');
+app.listen(port, (req, res) =>{
+    console.log(`Listening On Port: ${port}`);
 })
