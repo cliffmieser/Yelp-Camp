@@ -133,9 +133,12 @@ map.on('click', 'unclustered-point', (e) => {
 //events for mousing over or out of clusters
 map.on('mouseenter', 'clusters', () => {
     map.getCanvas().style.cursor = 'pointer';
+	console.log("pointer enter");
 });
-map.on('mouseleave', 'clusters', () => {
 
-map.getCanvas().style.cursor = '';
+map.on('mouseleave', 'clusters', () => {
+	map.getCanvas().style.cursor = '';
+	console.log("pointer exit");
 });
+
 });
