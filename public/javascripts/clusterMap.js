@@ -7,11 +7,11 @@ mapboxgl.accessToken = mapToken;
 
 //creates map & map container
 const map = new mapboxgl.Map({
-container: 'cluster-map',
-// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-style: 'mapbox://styles/mapbox/dark-v11',
-center: [-103.5917, 40.6699],
-zoom: 3
+	container: 'cluster-map',
+	// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+	style: 'mapbox://styles/mapbox/dark-v11',
+	center: [-103.5917, 40.6699],
+	zoom: 3
 });
  
 //map method on are eventlisteners to listen for
