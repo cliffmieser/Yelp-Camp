@@ -15,7 +15,7 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
-const port = 5000;
+const port = 2000;
 
 const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds.js');
