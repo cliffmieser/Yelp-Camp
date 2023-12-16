@@ -9,13 +9,13 @@
         <a href="/campgrounds/new">Add Campground</a>
     </div>
         <% for(let campground of campgrounds) {%>
-            <div class="card" mb-3>
+            <div class="card mb-3">
                 <div class="row">
                     <div class="col-md-4">
                         <%if(campground.images.length) { %>
-                            <img class="img-fluid" alt="" src="<%=campground.images[0].url%>">
+                            <img crossorigin="anonymous" class="img-fluid" alt="" src="<%=campground.images[0].url%>">
                             <% } else { %>
-                                <img class="img-fluid" alt="" src="https://res.cloudinary.com/dvotqqxww/image/upload/v1691545659/YelpCamp/o52wj3siayj6wc42vasc.jpg">
+                                <img crossorigin="anonymous" class="img-fluid" alt="" src="https://res.cloudinary.com/dvotqqxww/image/upload/v1691545659/YelpCamp/o52wj3siayj6wc42vasc.jpg">
                                 <% } %>
                     </div>
                     <div class="col-md-8">
