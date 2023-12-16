@@ -15,9 +15,7 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
-const port = 2000;
 const helmet = require('helmet');
-
 // middleware the helps prevent SQL injection by checking for
 //illegal/odd character
 const mongoSanitize = require('express-mongo-sanitize');
@@ -157,6 +155,6 @@ app.use((err, req, res, next) =>{
  
 })
 
-app.listen(port, (req, res) =>{
-    console.log(`Listening On Port: ${port}`);
+app.listen(3000, (req, res) =>{
+    console.log(`Listening On Port: 3000!`);
 })
