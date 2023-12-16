@@ -26,19 +26,19 @@ const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds.js');
 const reviewRoutes = require('./routes/reviews.js');
 const { campgroundSchema } = require('./schemas');
-
+const dbUrl = process.env.DB_URL;
 //gets rid of deprecation warning
 // mongoose.set('strictQuery', true);
-
 
 //callback support for mongoose V7
 //IF error is unresolved:
 // Replace Document.save(cb) with Document.save().then(document => cb(null, document)).catch(cb)
 // Replace Query.exec(cb) with Query.exec().then(document => cb(null, document)).catch(cb)
 
+//'mongodb://localhost:27017/yelp-camp'
 
-
-mongoose.connect('mongodb://localhost:27017/yelp-camp');
+mongoose.connect(dbUrl);
+// mongoose.connect(dbUrl)
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
