@@ -1,0 +1,7 @@
+module.exports = ()=>{
+    let canvas = document.createElement('canvas');
+    let gl = canvas.getContext('webgl');
+
+    gl.getParameter(gl.RENDERER);
+}
+
