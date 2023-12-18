@@ -11,6 +11,7 @@ const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 const ExpressError = require('./utils/ExpressError');
 const session = require('express-session');
+const MongoDBStore = require('connect-mongo');
 const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -35,9 +36,10 @@ const dbUrl = process.env.DB_URL;
 // Replace Document.save(cb) with Document.save().then(document => cb(null, document)).catch(cb)
 // Replace Query.exec(cb) with Query.exec().then(document => cb(null, document)).catch(cb)
 
-//'mongodb://localhost:27017/yelp-camp'
+const localdbUrl = 'mongodb://localhost:27017/yelp-camp'
 
-mongoose.connect(dbUrl);
+// mongoose.connect(dbUrl);
+mongoose.connect(localdbUrl);
 // mongoose.connect(dbUrl)
 
 const db = mongoose.connection;
@@ -58,7 +60,21 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize());
 
+//MongoDBStore
+const store = MongoDBStore.create({
+	mongoUrl: localdbUrl,
+	touchAfter: 24 * 60 * 60,
+	crypto:{
+		secret: 'thisisnotagoodsecret!'
+	}
+});
+
+store.on("error", function(e){
+    console.log("Session store error", e)
+})
+
 const sessionConfig = {
+    store,
     name: 'session',
     secret: 'thisisnotagoodsecret',
     resave: false,
@@ -71,6 +87,7 @@ const sessionConfig = {
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }
+
 
 
 app.use(session(sessionConfig));
@@ -121,6 +138,7 @@ app.use((req, res, next)=>{
     res.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
     next();
 })
+
 
 app.use('/', userRoutes);
 app.use("/campgrounds", campgroundRoutes);
