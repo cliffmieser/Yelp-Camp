@@ -27,7 +27,10 @@ const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds.js');
 const reviewRoutes = require('./routes/reviews.js');
 const { campgroundSchema } = require('./schemas');
-const dbUrl = process.env.DB_URL;
+
+//Local dbUrl for dev purposes
+const localdbUrl = 'mongodb://localhost:27017/yelp-camp';
+const dbUrl = process.env.DB_URL || localdbUrl;
 //gets rid of deprecation warning
 // mongoose.set('strictQuery', true);
 
@@ -36,10 +39,9 @@ const dbUrl = process.env.DB_URL;
 // Replace Document.save(cb) with Document.save().then(document => cb(null, document)).catch(cb)
 // Replace Query.exec(cb) with Query.exec().then(document => cb(null, document)).catch(cb)
 
-const localdbUrl = 'mongodb://localhost:27017/yelp-camp'
 
 // mongoose.connect(dbUrl);
-mongoose.connect(localdbUrl);
+mongoose.connect(dbUrl);
 // mongoose.connect(dbUrl)
 
 const db = mongoose.connection;
@@ -62,10 +64,10 @@ app.use(mongoSanitize());
 
 //MongoDBStore
 const store = MongoDBStore.create({
-	mongoUrl: localdbUrl,
+	mongoUrl: dbUrl,
 	touchAfter: 24 * 60 * 60,
 	crypto:{
-		secret: 'thisisnotagoodsecret!'
+		secret,
 	}
 });
 
@@ -73,10 +75,12 @@ store.on("error", function(e){
     console.log("Session store error", e)
 })
 
+const secret = process.env.SECRET || "thisshouldbeamuchbetterscecretthanthisone";
+
 const sessionConfig = {
     store,
     name: 'session',
-    secret: 'thisisnotagoodsecret',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
