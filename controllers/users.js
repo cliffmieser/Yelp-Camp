@@ -32,8 +32,20 @@ module.exports.login = (req, res) =>{
     res.redirect(redirectUrl);
 }
 
-module.exports.logout = (req, res) =>{
-    req.logout();
-    req.flash('success', 'Goodbye!');
-    res.redirect('/campgrounds');
+module.exports.logout = (req, res) => {
+    req.logout(function (err) {
+        if (err) {
+            return (err);
+        }
+        req.flash('success', "Goodbye!");
+        res.redirect('/campgrounds');
+    });
 }
+
+//old code below, now requires callback function
+
+// module.exports.logout = (req, res) =>{
+//     req.logout();
+//     req.flash('success', 'Goodbye!');
+//     res.redirect('/campgrounds');
+// }
