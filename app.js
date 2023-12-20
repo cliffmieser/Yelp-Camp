@@ -27,6 +27,7 @@ const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds.js');
 const reviewRoutes = require('./routes/reviews.js');
 const { campgroundSchema } = require('./schemas');
+const secret = process.env.SECRET || "thisshouldbeamuchbetterscecretthanthisone";
 
 //Local dbUrl for dev purposes
 const localdbUrl = 'mongodb://localhost:27017/yelp-camp';
@@ -74,8 +75,6 @@ const store = MongoDBStore.create({
 store.on("error", function(e){
     console.log("Session store error", e)
 })
-
-const secret = process.env.SECRET || "thisshouldbeamuchbetterscecretthanthisone";
 
 const sessionConfig = {
     store,
