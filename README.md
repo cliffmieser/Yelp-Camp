@@ -1,1 +1,1 @@
-# YelpCamp DEMO for experimentation purposes
+# YelpCamp
